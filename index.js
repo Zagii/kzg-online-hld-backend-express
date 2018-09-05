@@ -128,6 +128,17 @@ app.route('/api/test/:id').get(async (req, res) => {
        sdIT=await dajSD(pool,schema,"IT")
        sdNT=await dajSD(pool,schema,"NT")
 
+       let k=await dajObiectIDNazwa(pool,schema,"Koncepcja")
+        console.log(k);
+        for(var e in k)
+        {
+          console.log(k[e].object_id);
+          let a=await dajLinkedDocument(pool,schema,k[e].object_id);
+        //  console.log(a);
+        }
+       //let a = dajLinkedDocument(pool,schema,k[0].object_id);
+       //let b = dajLinkedDocument(pool,schema,k[1].object_id);
+
        let js={id:schema,projNazwa:projNazwa,SD_IT:sdIT,SD_NT:sdNT}
 
        res.send(JSON.stringify(js));
